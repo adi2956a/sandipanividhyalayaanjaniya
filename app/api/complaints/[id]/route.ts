@@ -3,6 +3,10 @@ import { requireAdmin } from "@/lib/api";
 import { connectToDatabase } from "@/lib/mongodb";
 import Complaint from "@/models/Complaint";
 
+function buildComplaintLookup(id: string) {
+  return id.startsWith("CMP-") ? { trackingId: id } : { _id: id };
+}
+
 export async function GET(_: NextRequest, { params }: { params: { id: string } }) {
   const unauthorized = await requireAdmin();
   if (unauthorized) return unauthorized;
@@ -10,7 +14,7 @@ export async function GET(_: NextRequest, { params }: { params: { id: string } }
   const db = await connectToDatabase();
   if (!db) return NextResponse.json({ message: "Database not configured" }, { status: 202 });
 
-  const complaint = await Complaint.findById(params.id).lean();
+  const complaint = await Complaint.findOne(buildComplaintLookup(params.id)).lean();
   return NextResponse.json(complaint);
 }
 
@@ -31,6 +35,6 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     resolvedAt: nextStatus === "resolved" ? new Date() : null
   };
 
-  const complaint = await Complaint.findByIdAndUpdate(params.id, update, { new: true });
+  const complaint = await Complaint.findOneAndUpdate(buildComplaintLookup(params.id), update, { new: true });
   return NextResponse.json(complaint);
 }

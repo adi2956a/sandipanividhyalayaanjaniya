@@ -8,6 +8,10 @@ function formatLabel(value: string) {
   return value.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
+function getComplaintIdentifier(item: ComplaintItem) {
+  return typeof item._id === "string" && item._id.trim() ? item._id : item.trackingId;
+}
+
 export function ComplaintsManager() {
   const [items, setItems] = useState<ComplaintItem[]>([]);
   const [selected, setSelected] = useState<ComplaintItem | null>(null);
@@ -27,8 +31,9 @@ export function ComplaintsManager() {
     const data = await response.json();
     const nextItems = Array.isArray(data) ? data : [];
     setItems(nextItems);
-    if (selected?._id) {
-      const refreshed = nextItems.find((item: ComplaintItem) => item._id === selected._id) ?? null;
+    if (selected) {
+      const selectedId = getComplaintIdentifier(selected);
+      const refreshed = nextItems.find((item: ComplaintItem) => getComplaintIdentifier(item) === selectedId) ?? null;
       setSelected(refreshed);
       if (refreshed) {
         setEditState({ status: refreshed.status, adminResponse: refreshed.adminResponse ?? "" });
@@ -69,11 +74,13 @@ export function ComplaintsManager() {
   }
 
   async function handleSave() {
-    if (!selected?._id) return;
+    if (!selected) return;
     setSaving(true);
     setStatusMessage("");
 
-    const response = await fetch(`/api/complaints/${selected._id}`, {
+    const complaintId = encodeURIComponent(getComplaintIdentifier(selected));
+
+    const response = await fetch(`/api/complaints/${complaintId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editState)
