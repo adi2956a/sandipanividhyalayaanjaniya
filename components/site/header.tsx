@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { LocalizedText } from "@/components/site/localized-text";
+import { SiteLogo } from "@/components/site/site-logo";
 import { SitePreferenceControls } from "@/components/site/site-preference-controls";
 import { useSitePreferences } from "@/components/site/site-preferences";
 import { SiteSettings } from "@/lib/types";
@@ -11,6 +12,7 @@ const navItems = [
   { href: "/about", en: "About", hi: "हमारे बारे में" },
   { href: "/academics", en: "Academics", hi: "शैक्षणिक" },
   { href: "/admissions", en: "Admissions", hi: "प्रवेश" },
+  { href: "/faculties", en: "Faculties", hi: "संकाय" },
   { href: "/facilities", en: "Facilities", hi: "सुविधाएं" },
   { href: "/activities", en: "Activities", hi: "गतिविधियां" },
   { href: "/notices", en: "Notices", hi: "सूचनाएं" },
@@ -38,14 +40,17 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
       </div>
       <header className="border-b border-border bg-white">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-5 md:px-6 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <p className="font-heading text-2xl font-bold text-primary">
-              {language === "hi" ? settings.schoolNameHi || settings.schoolName : settings.schoolName}
-            </p>
-            <p className="font-hindi text-sm text-muted">
-              {language === "hi" ? settings.schoolName : settings.schoolNameHi}
-            </p>
-            <p className="mt-1 text-sm text-muted">{settings.address}</p>
+          <div className="flex items-center gap-4">
+            <SiteLogo />
+            <div>
+              <p className="font-heading text-2xl font-bold text-primary">
+                {language === "hi" ? settings.schoolNameHi || settings.schoolName : settings.schoolName}
+              </p>
+              <p className="font-hindi text-sm text-muted">
+                {language === "hi" ? settings.schoolName : settings.schoolNameHi}
+              </p>
+              <p className="mt-1 text-sm text-muted">{settings.address}</p>
+            </div>
           </div>
           <div className="flex flex-wrap items-center gap-3 text-sm">
             <a className="rounded-full border border-secondary px-4 py-2 font-medium text-primary" href={`tel:${settings.phone}`}>
