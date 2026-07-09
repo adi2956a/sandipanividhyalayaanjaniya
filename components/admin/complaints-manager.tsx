@@ -63,12 +63,9 @@ export function ComplaintsManager() {
     };
   }, [items]);
 
-  async function handleSelect(id?: string) {
-    if (!id) return;
-    const response = await fetch(`/api/complaints/${id}`, { cache: "no-store" });
-    const data = await response.json();
-    setSelected(data);
-    setEditState({ status: data.status, adminResponse: data.adminResponse ?? "" });
+  function handleSelect(item: ComplaintItem) {
+    setSelected(item);
+    setEditState({ status: item.status, adminResponse: item.adminResponse ?? "" });
   }
 
   async function handleSave() {
@@ -149,7 +146,7 @@ export function ComplaintsManager() {
                 item.isUrgent ? "border-red-200 bg-red-50/60" : "border-border bg-white"
               }`}
               type="button"
-              onClick={() => void handleSelect(item._id)}
+              onClick={() => handleSelect(item)}
             >
               <div className="flex flex-wrap items-center gap-3">
                 <span className="font-heading text-lg font-semibold text-primary">{item.trackingId}</span>
