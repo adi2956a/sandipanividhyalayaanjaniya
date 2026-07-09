@@ -1,4 +1,13 @@
-import { DownloadItem, GalleryItem, HomepageContent, NoticeItem, SiteSettings } from "@/lib/types";
+import {
+  ComplaintItem,
+  DownloadItem,
+  GalleryItem,
+  HomepageContent,
+  NoticeItem,
+  PreviousYearPaperItem,
+  SiteSettings,
+  StudentResourceItem
+} from "@/lib/types";
 
 export const sampleSettings: SiteSettings = {
   schoolName: "Sandipani Vidyalaya, Anjaniya, Mandla",
@@ -141,3 +150,57 @@ export const sampleDownloads: DownloadItem[] = [
     uploadedAt: "2026-07-02"
   }
 ];
+
+export const sampleStudentResources: StudentResourceItem[] = [
+  {
+    _id: "sample-resource-1",
+    class: 10,
+    stream: "common",
+    subject: "Science",
+    chapter: "Chapter 1 - Chemical Reactions",
+    chapterOrder: 1,
+    youtubeLinks: [
+      { title: "Introduction", youtubeId: "dQw4w9WgXcQ" }
+    ],
+    notesPdfUrl: "https://drive.google.com",
+    createdAt: "2026-07-01",
+    updatedAt: "2026-07-01"
+  },
+  {
+    _id: "sample-resource-2",
+    class: 11,
+    stream: "science",
+    subject: "Physics",
+    chapter: "Chapter 1 - Physical World",
+    chapterOrder: 1,
+    youtubeLinks: [
+      { title: "Part 1", youtubeId: "dQw4w9WgXcQ" }
+    ],
+    notesPdfUrl: "https://drive.google.com",
+    createdAt: "2026-07-01",
+    updatedAt: "2026-07-01"
+  }
+];
+
+export const samplePreviousPapers: PreviousYearPaperItem[] = [
+  {
+    _id: "sample-paper-1",
+    class: 10,
+    subject: "Science",
+    year: 2025,
+    examType: "annual",
+    fileUrl: "https://drive.google.com",
+    uploadedAt: "2026-07-01"
+  },
+  {
+    _id: "sample-paper-2",
+    class: 12,
+    subject: "Physics",
+    year: 2025,
+    examType: "pre-board",
+    fileUrl: "https://drive.google.com",
+    uploadedAt: "2026-07-01"
+  }
+];
+
+export const sampleComplaints: ComplaintItem[] = [];

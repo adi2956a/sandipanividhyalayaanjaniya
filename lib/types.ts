@@ -6,6 +6,18 @@ export type DownloadCategory =
   | "prospectus"
   | "circular"
   | "govt-order";
+export type ResourceStream = "science" | "commerce" | "arts" | "common";
+export type ComplaintCategory =
+  | "bullying"
+  | "teacher-conduct"
+  | "infrastructure"
+  | "academic"
+  | "safety"
+  | "fee-related"
+  | "other";
+export type ComplaintRole = "student" | "parent";
+export type ComplaintStatus = "submitted" | "under-review" | "resolved";
+export type PreviousPaperExamType = "annual" | "half-yearly" | "pre-board" | "unit-test";
 
 export interface NoticeItem {
   _id?: string;
@@ -35,6 +47,56 @@ export interface DownloadItem {
   category: DownloadCategory;
   fileUrl: string;
   uploadedAt: string;
+}
+
+export interface StudentResourceVideo {
+  title: string;
+  youtubeId: string;
+}
+
+export interface StudentResourceItem {
+  _id?: string;
+  class: number;
+  stream: ResourceStream;
+  subject: string;
+  chapter: string;
+  chapterOrder: number;
+  youtubeLinks: StudentResourceVideo[];
+  notesPdfUrl?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PreviousYearPaperItem {
+  _id?: string;
+  class: number;
+  subject: string;
+  year: number;
+  examType: PreviousPaperExamType;
+  fileUrl: string;
+  uploadedAt: string;
+}
+
+export interface ComplaintItem {
+  _id?: string;
+  trackingId: string;
+  category: ComplaintCategory;
+  submittedBy: ComplaintRole;
+  classSection?: string;
+  message: string;
+  optionalContact?: string;
+  status: ComplaintStatus;
+  adminResponse?: string;
+  isUrgent: boolean;
+  createdAt: string;
+  resolvedAt?: string;
+}
+
+export interface ComplaintTrackResult {
+  trackingId: string;
+  category: ComplaintCategory;
+  status: ComplaintStatus;
+  adminResponse?: string;
 }
 
 export interface HomepageContent {
@@ -73,4 +135,3 @@ export interface SiteSettings {
   };
   officeTimings: string;
 }
-

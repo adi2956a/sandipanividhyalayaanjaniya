@@ -17,39 +17,45 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
           </p>
           <p className="mt-3 text-sm text-white/80">{settings.address}</p>
           <p className="mt-2 text-sm text-white/80">
-            <LocalizedText en="Email" hi="ईमेल" />: {settings.email}
+            <LocalizedText en="Email" hi="à¤ˆà¤®à¥‡à¤²" />: {settings.email}
           </p>
           <p className="text-sm text-white/80">
-            <LocalizedText en="Phone" hi="फोन" />: {settings.phone}
+            <LocalizedText en="Phone" hi="à¤«à¥‹à¤¨" />: {settings.phone}
           </p>
         </div>
         <div>
           <p className="font-heading text-lg font-semibold">
-            <LocalizedText en="Quick Links" hi="त्वरित लिंक" />
+            <LocalizedText en="Quick Links" hi="à¤¤à¥à¤µà¤°à¤¿à¤¤ à¤²à¤¿à¤‚à¤•" />
           </p>
           <div className="mt-3 flex flex-col gap-2 text-sm text-white/80">
             <Link href="/notices">
-              <LocalizedText en="Notices & Circulars" hi="सूचनाएं और परिपत्र" />
+              <LocalizedText en="Notices & Circulars" hi="à¤¸à¥‚à¤šà¤¨à¤¾à¤à¤‚ à¤”à¤° à¤ªà¤°à¤¿à¤ªà¤¤à¥à¤°" />
             </Link>
             <Link href="/downloads">
-              <LocalizedText en="Downloads" hi="डाउनलोड" />
+              <LocalizedText en="Downloads" hi="à¤¡à¤¾à¤‰à¤¨à¤²à¥‹à¤¡" />
+            </Link>
+            <Link href="/student-resources">
+              <LocalizedText en="Student Resources" hi="Student Resources" />
+            </Link>
+            <Link href="/complaints">
+              <LocalizedText en="Anonymous Complaint Box" hi="Anonymous Complaint Box" />
             </Link>
             <Link href="/disclosure">
-              <LocalizedText en="Mandatory Disclosure" hi="अनिवार्य प्रकटीकरण" />
+              <LocalizedText en="Mandatory Disclosure" hi="à¤…à¤¨à¤¿à¤µà¤¾à¤°à¥à¤¯ à¤ªà¥à¤°à¤•à¤Ÿà¥€à¤•à¤°à¤£" />
             </Link>
             <Link href="/contact">
-              <LocalizedText en="Contact Us" hi="संपर्क करें" />
+              <LocalizedText en="Contact Us" hi="à¤¸à¤‚à¤ªà¤°à¥à¤• à¤•à¤°à¥‡à¤‚" />
             </Link>
           </div>
         </div>
         <div>
           <p className="font-heading text-lg font-semibold">
-            <LocalizedText en="Important Note" hi="महत्वपूर्ण सूचना" />
+            <LocalizedText en="Important Note" hi="à¤®à¤¹à¤¤à¥à¤µà¤ªà¥‚à¤°à¥à¤£ à¤¸à¥‚à¤šà¤¨à¤¾" />
           </p>
           <p className="mt-3 text-sm leading-6 text-white/80">
             <LocalizedText
               en="This website is intended to provide public information about school activities, admissions, notices, and services. Content should be verified with the school office for official submission needs."
-              hi="यह वेबसाइट विद्यालय की गतिविधियों, प्रवेश, सूचनाओं और सेवाओं से संबंधित सार्वजनिक जानकारी देने के लिए है। आधिकारिक उपयोग के लिए सामग्री की पुष्टि विद्यालय कार्यालय से करें।"
+              hi="à¤¯à¤¹ à¤µà¥‡à¤¬à¤¸à¤¾à¤‡à¤Ÿ à¤µà¤¿à¤¦à¥à¤¯à¤¾à¤²à¤¯ à¤•à¥€ à¤—à¤¤à¤¿à¤µà¤¿à¤§à¤¿à¤¯à¥‹à¤‚, à¤ªà¥à¤°à¤µà¥‡à¤¶, à¤¸à¥‚à¤šà¤¨à¤¾à¤“à¤‚ à¤”à¤° à¤¸à¥‡à¤µà¤¾à¤“à¤‚ à¤¸à¥‡ à¤¸à¤‚à¤¬à¤‚à¤§à¤¿à¤¤ à¤¸à¤¾à¤°à¥à¤µà¤œà¤¨à¤¿à¤• à¤œà¤¾à¤¨à¤•à¤¾à¤°à¥€ à¤¦à¥‡à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤¹à¥ˆà¥¤ à¤†à¤§à¤¿à¤•à¤¾à¤°à¤¿à¤• à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¥‡ à¤²à¤¿à¤ à¤¸à¤¾à¤®à¤—à¥à¤°à¥€ à¤•à¥€ à¤ªà¥à¤·à¥à¤Ÿà¤¿ à¤µà¤¿à¤¦à¥à¤¯à¤¾à¤²à¤¯ à¤•à¤¾à¤°à¥à¤¯à¤¾à¤²à¤¯ à¤¸à¥‡ à¤•à¤°à¥‡à¤‚à¥¤"
             />
           </p>
         </div>

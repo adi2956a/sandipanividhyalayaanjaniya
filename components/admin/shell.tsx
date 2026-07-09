@@ -6,6 +6,9 @@ const adminLinks = [
   { href: "/admin/notices", label: "Notices" },
   { href: "/admin/gallery", label: "Gallery" },
   { href: "/admin/downloads", label: "Downloads" },
+  { href: "/admin/student-resources", label: "Resources" },
+  { href: "/admin/previous-papers", label: "Previous Papers" },
+  { href: "/admin/complaints", label: "Complaints" },
   { href: "/admin/homepage", label: "Homepage" },
   { href: "/admin/settings", label: "Settings" }
 ];
@@ -34,4 +37,3 @@ export function AdminShell({ title, children }: { title: string; children: React
     </div>
   );
 }
-
