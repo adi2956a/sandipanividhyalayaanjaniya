@@ -1,0 +1,398 @@
+This project is a **Next.js 14 school website**. We created it so the site has three main layers working together:
+
+1. **Public website UI**
+2. **Admin/dashboard area**
+3. **Backend/API + database models**
+
+Here’s what each folder and key file does.
+
+**Root Level**
+
+`app/`
+This is the heart of the website in Next.js App Router.
+Everything the user visits in the browser lives here.
+It contains:
+- Public pages like Home, About, Contact, Gallery
+- Admin pages like `/admin/dashboard`
+- API routes like `/api/notices` and `/api/contact`
+- Global layout and global CSS
+
+`components/`
+Reusable UI pieces.
+Instead of repeating the same header, footer, cards, forms, or admin shell everywhere, we created them once here and reused them across pages.
+
+`lib/`
+Shared logic and utilities.
+This is where we put:
+- MongoDB connection code
+- auth config
+- helper functions
+- sample data
+- content loaders
+- YouTube URL parsing logic
+
+`models/`
+MongoDB/Mongoose schemas.
+Each file defines the structure of one collection in the database, like notices, downloads, gallery items, contact messages, and site settings.
+
+`scripts/`
+Helper scripts for development tasks.
+Right now it contains the seed script to insert sample data into MongoDB.
+
+`.env.example`
+A template showing which environment variables the project needs, like:
+- `MONGODB_URI`
+- `NEXTAUTH_SECRET`
+- `NEXTAUTH_URL`
+- `ADMIN_USERNAME`
+- `ADMIN_PASSWORD`
+
+`.gitignore`
+Tells Git which files/folders not to track, like `node_modules`, `.next`, `.env`.
+
+`package.json`
+Project manifest.
+Defines:
+- project name
+- dependencies
+- scripts like `npm run dev`, `npm run build`, `npm run seed`
+
+`tsconfig.json`
+TypeScript configuration.
+
+`tailwind.config.ts`
+Tailwind design setup.
+This is where we defined the school theme colors like:
+- blue `#0F4C81`
+- saffron `#FF9933`
+- green `#138808`
+
+`postcss.config.js`
+Supports Tailwind CSS processing.
+
+`next.config.js`
+Next.js configuration.
+We used it mainly to allow remote images.
+
+`middleware.ts`
+Protects admin routes using NextAuth middleware.
+
+`README.md`
+Setup notes and project overview.
+
+**Inside `app/`**
+
+`app/layout.tsx`
+Global layout for the whole site.
+It loads:
+- fonts
+- metadata
+- global CSS
+
+Every page is wrapped through this layout.
+
+`app/globals.css`
+Global styles used across the entire website.
+
+`app/page.tsx`
+Homepage.
+This page includes the main school landing UI:
+- hero section
+- principal message
+- why choose us
+- facilities preview
+- latest notices
+- events
+- gallery
+- downloads
+- contact/map preview
+
+`app/about/page.tsx`
+About school page.
+
+`app/academics/page.tsx`
+Academics page.
+
+`app/admissions/page.tsx`
+Admissions page.
+
+`app/facilities/page.tsx`
+Facilities page.
+
+`app/activities/page.tsx`
+Student activities and achievements page.
+
+`app/notices/page.tsx`
+Shows all public notices.
+
+`app/gallery/page.tsx`
+Shows gallery photos and videos.
+
+`app/downloads/page.tsx`
+Shows downloadable documents like forms and circulars.
+
+`app/disclosure/page.tsx`
+Mandatory public disclosure page.
+
+`app/contact/page.tsx`
+Contact page with office details, map, and form.
+
+**Inside `app/admin/`**
+
+This is the admin area UI.
+
+`app/admin/page.tsx`
+Admin login page.
+
+`app/admin/dashboard/page.tsx`
+Admin overview page.
+
+`app/admin/notices/page.tsx`
+UI for managing notices.
+
+`app/admin/gallery/page.tsx`
+UI for managing gallery content.
+
+`app/admin/downloads/page.tsx`
+UI for managing downloadable documents.
+
+`app/admin/homepage/page.tsx`
+UI placeholder for editing homepage content.
+
+`app/admin/settings/page.tsx`
+UI placeholder for site-wide settings like school name, address, map, contact info.
+
+Important note:
+These admin pages are currently **scaffolded UI**. The structure is ready, but the forms are not fully wired to save live content from the browser yet.
+
+**Inside `app/api/`**
+
+This is the backend API layer.
+
+`app/api/auth/[...nextauth]/route.ts`
+Handles admin authentication through NextAuth.
+
+`app/api/notices/route.ts`
+Public `GET` for notices and admin `POST` for creating notices.
+
+`app/api/notices/[id]/route.ts`
+Single notice actions:
+- `GET`
+- `PUT`
+- `DELETE`
+
+`app/api/gallery/route.ts`
+Gallery list and create route.
+
+`app/api/gallery/[id]/route.ts`
+Delete gallery item.
+
+`app/api/downloads/route.ts`
+Downloads list and create route.
+
+`app/api/downloads/[id]/route.ts`
+Delete download item.
+
+`app/api/homepage/route.ts`
+Get and update homepage content.
+
+`app/api/settings/route.ts`
+Get and update site settings.
+
+`app/api/contact/route.ts`
+Public contact form submission route.
+
+How these work:
+Frontend pages or admin forms can call these routes to read/write data.
+Example:
+- public notices page can fetch `/api/notices`
+- contact form posts to `/api/contact`
+
+**Inside `components/`**
+
+We split this into two parts.
+
+`components/site/`
+Reusable public website components.
+
+Files there:
+- `header.tsx`  
+  School header + top government strip + navigation
+
+- `footer.tsx`  
+  Footer with quick links and contact info
+
+- `section.tsx`  
+  Shared layout wrapper for page sections
+
+- `cards.tsx`  
+  Notice card, gallery card, and download card UIs
+
+- `contact-form.tsx`  
+  Frontend form that submits contact messages
+
+- `page-hero.tsx`  
+  Reusable top banner for internal pages like About, Contact, Admissions
+
+`components/admin/`
+Reusable admin UI components.
+
+Files there:
+- `login-form.tsx`  
+  Admin login form using NextAuth credentials
+
+- `shell.tsx`  
+  Shared admin layout with sidebar and content area
+
+**Inside `lib/`**
+
+This folder contains the project’s shared logic.
+
+`lib/types.ts`
+TypeScript types/interfaces for data like:
+- notices
+- gallery items
+- downloads
+- homepage content
+- site settings
+
+This keeps the code safer and more consistent.
+
+`lib/sample-data.ts`
+Fallback sample content.
+This is very useful because the website can still show UI even if MongoDB is not connected yet.
+
+`lib/utils.ts`
+Small utility helpers like:
+- class merging
+- date formatting
+
+`lib/mongodb.ts`
+MongoDB connection logic.
+This connects the app to MongoDB Atlas and caches the connection so it isn’t recreated on every request.
+
+`lib/youtube.ts`
+Extracts YouTube video ID from different types of YouTube links.
+Example:
+- `youtube.com/watch?v=...`
+- `youtu.be/...`
+
+This is useful because we only want to store the video ID, not full messy links.
+
+`lib/auth.ts`
+NextAuth configuration.
+Defines:
+- credentials login
+- session strategy
+- admin username/password fallback from env vars
+
+`lib/content.ts`
+Data access layer.
+This is important.
+
+It tries to load data from MongoDB first, and if DB is not configured, it falls back to `sample-data.ts`.
+
+So pages still work during early development.
+
+`lib/api.ts`
+Helper for protecting admin API routes.
+Checks whether the user is logged in before allowing write actions.
+
+**Inside `models/`**
+
+Each file here defines one MongoDB collection structure.
+
+`models/Notice.ts`
+For:
+- title
+- Hindi title
+- type
+- description
+- file URL
+- event date
+- pinned status
+
+`models/GalleryItem.ts`
+For:
+- title
+- photo/video type
+- image URL
+- YouTube ID
+- category
+
+`models/Download.ts`
+For downloadable resources like:
+- admission forms
+- calendars
+- circulars
+- govt orders
+
+`models/HomepageContent.ts`
+Singleton content for homepage sections like:
+- hero slides
+- principal message
+- achievements
+- why choose us
+
+`models/SiteSettings.ts`
+Singleton settings for the whole site like:
+- school name
+- Hindi name
+- address
+- phone
+- email
+- map URL
+- social links
+
+`models/ContactSubmission.ts`
+Stores contact form entries from users.
+
+`models/Admin.ts`
+Admin user schema.
+Right now auth mainly uses env credentials, but this model is ready if you later want DB-based admin accounts.
+
+**Inside `scripts/`**
+
+`scripts/seed.ts`
+Seeds the database with sample content.
+This helps quickly populate MongoDB with demo notices, downloads, gallery items, homepage content, and settings.
+
+**How Everything Connects**
+
+The flow is:
+
+- `app/` shows pages to users
+- pages use `lib/content.ts` to fetch data
+- `lib/content.ts` reads from MongoDB using `models/`
+- if MongoDB is missing, it uses `lib/sample-data.ts`
+- admin/API writes happen through `app/api/...`
+- admin protection uses `lib/auth.ts` + `middleware.ts`
+
+So the architecture is clean:
+
+- `app` = routes/pages/API
+- `components` = reusable UI
+- `lib` = shared logic/helpers
+- `models` = database structure
+- `scripts` = developer utilities
+
+**What Is Complete Right Now**
+
+Complete:
+- project structure
+- public UI pages
+- theme and layout
+- data models
+- API route scaffolding
+- admin page structure
+- auth setup skeleton
+- fallback sample content
+
+Not fully complete yet:
+- dependency installation and local run
+- live CRUD form wiring in admin pages
+- Cloudinary upload integration
+- full database-backed admin workflow
+- production polish/testing
+
+If you want, next I can explain **each file one by one** as well, not just each folder.

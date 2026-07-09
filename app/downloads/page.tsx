@@ -1,3 +1,4 @@
+import { LocalizedText } from "@/components/site/localized-text";
 import { SiteFooter } from "@/components/site/footer";
 import { SiteHeader } from "@/components/site/header";
 import { DownloadCard } from "@/components/site/cards";
@@ -11,8 +12,14 @@ export default async function DownloadsPage() {
   return (
     <div>
       <SiteHeader settings={settings} />
-      <PageHero title="Downloads" subtitle="Admission forms, calendars, circulars, and other public documents linked from trusted storage services." />
-      <Section title="Available Documents" description="Google Drive and external PDF links are supported without adding a separate file server.">
+      <PageHero
+        title={<LocalizedText en="Downloads" hi="डाउनलोड" />}
+        subtitle={<LocalizedText en="Admission forms, calendars, circulars, and other public documents linked from trusted storage services." hi="प्रवेश फॉर्म, कैलेंडर, परिपत्र और अन्य सार्वजनिक दस्तावेज़ यहां उपलब्ध हैं।" />}
+      />
+      <Section
+        title={<LocalizedText en="Available Documents" hi="उपलब्ध दस्तावेज़" />}
+        description={<LocalizedText en="Google Drive and external PDF links are supported without adding a separate file server." hi="Google Drive और बाहरी PDF लिंक बिना अलग फाइल सर्वर के समर्थित हैं।" />}
+      >
         <div className="grid gap-5 lg:grid-cols-3">
           {downloads.map((item) => (
             <DownloadCard key={item._id ?? item.title} item={item} />
@@ -23,4 +30,3 @@ export default async function DownloadsPage() {
     </div>
   );
 }
-

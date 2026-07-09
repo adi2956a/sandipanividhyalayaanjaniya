@@ -7,9 +7,9 @@ export function Section({
   children,
   muted = false
 }: {
-  eyebrow?: string;
-  title: string;
-  description?: string;
+  eyebrow?: ReactNode;
+  title: ReactNode;
+  description?: ReactNode;
   children: ReactNode;
   muted?: boolean;
 }) {
@@ -26,4 +26,3 @@ export function Section({
     </section>
   );
 }
-

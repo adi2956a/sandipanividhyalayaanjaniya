@@ -1,9 +1,11 @@
+import { ReactNode } from "react";
+
 export function PageHero({
   title,
   subtitle
 }: {
-  title: string;
-  subtitle: string;
+  title: ReactNode;
+  subtitle: ReactNode;
 }) {
   return (
     <section className="bg-surface">
@@ -14,4 +16,3 @@ export function PageHero({
     </section>
   );
 }
-

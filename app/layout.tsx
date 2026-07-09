@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Sans_Devanagari, Poppins } from "next/font/google";
+import { SitePreferencesProvider } from "@/components/site/site-preferences";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -28,7 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${inter.variable} ${notoSansDevanagari.variable}`}>
-        {children}
+        <SitePreferencesProvider>{children}</SitePreferencesProvider>
       </body>
     </html>
   );
