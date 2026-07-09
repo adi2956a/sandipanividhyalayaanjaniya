@@ -22,8 +22,14 @@ export default async function ComplaintsPage() {
           </div>
 
           <div className="mt-10 grid gap-6">
-            <div className="rounded-[2rem] border border-[#d9dbe8] bg-white/70 p-6 text-[#1f2940] shadow-card">
+            <div className="flex flex-col gap-4 rounded-[2rem] border border-[#d9dbe8] bg-white/70 p-6 text-[#1f2940] shadow-card md:flex-row md:items-center md:justify-between">
               <p className="font-medium">Tell us what happened. You will receive a tracking ID to check progress later at any time.</p>
+              <a
+                className="inline-flex w-fit rounded-full border border-[#c8cede] bg-white px-5 py-3 font-semibold text-[#1f2940] transition hover:bg-[#f7f7fb]"
+                href="/complaints/track"
+              >
+                Track Your Complaint
+              </a>
             </div>
             <ComplaintForm />
           </div>
