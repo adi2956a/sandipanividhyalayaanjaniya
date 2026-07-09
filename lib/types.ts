@@ -95,6 +95,9 @@ export interface ComplaintItem {
 export interface ComplaintTrackResult {
   trackingId: string;
   category: ComplaintCategory;
+  submittedBy: ComplaintRole;
+  classSection?: string;
+  message: string;
   status: ComplaintStatus;
   adminResponse?: string;
 }

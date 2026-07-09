@@ -57,15 +57,24 @@ export function ComplaintTracker() {
       {result ? (
         <div className="rounded-[2rem] border border-[#d9dbe8] bg-white p-8 shadow-card">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#63708b]">{result.trackingId}</p>
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
             <div className="rounded-3xl bg-[#f7f7fb] p-5">
               <p className="text-sm text-[#5e687d]">Category</p>
               <p className="mt-2 font-heading text-2xl font-semibold text-[#1f2940]">{formatLabel(result.category)}</p>
             </div>
             <div className="rounded-3xl bg-[#f7f7fb] p-5">
+              <p className="text-sm text-[#5e687d]">Submitted By</p>
+              <p className="mt-2 font-heading text-2xl font-semibold text-[#1f2940]">{formatLabel(result.submittedBy)}</p>
+            </div>
+            <div className="rounded-3xl bg-[#f7f7fb] p-5">
               <p className="text-sm text-[#5e687d]">Status</p>
               <p className="mt-2 font-heading text-2xl font-semibold text-[#1f2940]">{formatLabel(result.status)}</p>
             </div>
+          </div>
+          <div className="mt-5 rounded-3xl border border-[#e7e9f2] bg-[#fafafe] p-5">
+            <p className="text-sm font-medium text-[#5e687d]">Submitted Problem</p>
+            {result.classSection?.trim() ? <p className="mt-2 text-sm text-[#5e687d]">Class / Section: {result.classSection}</p> : null}
+            <p className="mt-2 leading-7 text-[#1f2940]">{result.message}</p>
           </div>
           <div className="mt-5 rounded-3xl border border-[#e7e9f2] bg-[#fafafe] p-5">
             <p className="text-sm font-medium text-[#5e687d]">School Response</p>

@@ -145,6 +145,9 @@ export async function getComplaintTrackResult(trackingId: string): Promise<Compl
     | {
         trackingId: string;
         category: ComplaintTrackResult["category"];
+        submittedBy: ComplaintTrackResult["submittedBy"];
+        classSection?: string;
+        message: string;
         status: ComplaintTrackResult["status"];
         adminResponse?: string;
       }
@@ -154,6 +157,9 @@ export async function getComplaintTrackResult(trackingId: string): Promise<Compl
   return normalizeTextValue({
     trackingId: complaint.trackingId,
     category: complaint.category,
+    submittedBy: complaint.submittedBy,
+    classSection: complaint.classSection ?? "",
+    message: complaint.message,
     status: complaint.status,
     adminResponse: complaint.adminResponse ?? ""
   });
