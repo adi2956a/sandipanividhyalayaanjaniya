@@ -67,7 +67,6 @@ export const sampleHomepage: HomepageContent = {
 
 export const sampleNotices: NoticeItem[] = [
   {
-    _id: "1",
     title: "Admissions Open for Session 2026-27",
     titleHi: "सत्र 2026-27 के लिए प्रवेश प्रारंभ",
     type: "news",
@@ -77,7 +76,6 @@ export const sampleNotices: NoticeItem[] = [
     createdAt: "2026-06-28"
   },
   {
-    _id: "2",
     title: "Parent-Teacher Meeting on 15 July 2026",
     type: "event",
     description: "Parents are requested to attend the meeting to review academic progress and student well-being.",
@@ -85,14 +83,12 @@ export const sampleNotices: NoticeItem[] = [
     createdAt: "2026-07-01"
   },
   {
-    _id: "3",
     title: "Monsoon Safety Advisory",
     type: "circular",
     description: "Students should carry rain protection and follow transport instructions during heavy rainfall.",
     createdAt: "2026-07-03"
   },
   {
-    _id: "4",
     title: "Holiday on Guru Purnima",
     type: "holiday",
     description: "School will remain closed on account of Guru Purnima.",
@@ -103,7 +99,6 @@ export const sampleNotices: NoticeItem[] = [
 
 export const sampleGallery: GalleryItem[] = [
   {
-    _id: "1",
     title: "Morning Assembly",
     type: "photo",
     imageUrl: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&w=900&q=80",
@@ -111,7 +106,6 @@ export const sampleGallery: GalleryItem[] = [
     createdAt: "2026-05-10"
   },
   {
-    _id: "2",
     title: "Library Session",
     type: "photo",
     imageUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80",
@@ -119,7 +113,6 @@ export const sampleGallery: GalleryItem[] = [
     createdAt: "2026-05-11"
   },
   {
-    _id: "3",
     title: "Annual Day Highlights",
     type: "video",
     youtubeId: "dQw4w9WgXcQ",
@@ -130,25 +123,21 @@ export const sampleGallery: GalleryItem[] = [
 
 export const sampleDownloads: DownloadItem[] = [
   {
-    _id: "1",
     title: "Admission Form 2026-27",
     category: "admission-form",
     fileUrl: "https://drive.google.com",
     uploadedAt: "2026-06-21"
   },
   {
-    _id: "2",
     title: "Academic Calendar",
     category: "calendar",
     fileUrl: "https://drive.google.com",
     uploadedAt: "2026-06-16"
   },
   {
-    _id: "3",
     title: "Department Circular",
     category: "circular",
     fileUrl: "https://drive.google.com",
     uploadedAt: "2026-07-02"
   }
 ];
-

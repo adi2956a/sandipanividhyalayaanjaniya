@@ -6,6 +6,8 @@ import { PageHero } from "@/components/site/page-hero";
 import { Section } from "@/components/site/section";
 import { getGalleryItems, getSiteSettings } from "@/lib/content";
 
+export const dynamic = "force-dynamic";
+
 export default async function GalleryPage() {
   const [settings, gallery] = await Promise.all([getSiteSettings(), getGalleryItems()]);
 

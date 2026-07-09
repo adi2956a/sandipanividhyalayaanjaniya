@@ -4,6 +4,8 @@ import { requireAdmin } from "@/lib/api";
 import { connectToDatabase } from "@/lib/mongodb";
 import SiteSettingsModel from "@/models/SiteSettings";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const settings = await getSiteSettings();
   return NextResponse.json(settings);
@@ -27,4 +29,3 @@ export async function PUT(request: NextRequest) {
 
   return NextResponse.json(updated);
 }
-

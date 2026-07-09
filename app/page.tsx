@@ -7,6 +7,8 @@ import { DownloadCard, GalleryCard, NoticeCard } from "@/components/site/cards";
 import { Section } from "@/components/site/section";
 import { getDownloads, getGalleryItems, getHomepageContent, getNotices, getSiteSettings } from "@/lib/content";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const [settings, homepage, notices, gallery, downloads] = await Promise.all([
     getSiteSettings(),

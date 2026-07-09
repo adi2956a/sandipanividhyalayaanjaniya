@@ -5,6 +5,8 @@ import { connectToDatabase } from "@/lib/mongodb";
 import { extractYoutubeId } from "@/lib/youtube";
 import GalleryItem from "@/models/GalleryItem";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const items = await getGalleryItems();
   return NextResponse.json(items);
@@ -28,4 +30,3 @@ export async function POST(request: NextRequest) {
   const item = await GalleryItem.create(normalizedPayload);
   return NextResponse.json(item, { status: 201 });
 }
-

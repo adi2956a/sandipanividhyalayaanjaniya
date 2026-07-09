@@ -4,6 +4,8 @@ import { requireAdmin } from "@/lib/api";
 import { connectToDatabase } from "@/lib/mongodb";
 import Notice from "@/models/Notice";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const notices = await getNotices();
   return NextResponse.json(notices);
@@ -23,4 +25,3 @@ export async function POST(request: NextRequest) {
   const notice = await Notice.create(payload);
   return NextResponse.json(notice, { status: 201 });
 }
-

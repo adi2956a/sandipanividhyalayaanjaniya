@@ -4,6 +4,8 @@ import { requireAdmin } from "@/lib/api";
 import { connectToDatabase } from "@/lib/mongodb";
 import HomepageContentModel from "@/models/HomepageContent";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const content = await getHomepageContent();
   return NextResponse.json(content);
@@ -27,4 +29,3 @@ export async function PUT(request: NextRequest) {
 
   return NextResponse.json(updated);
 }
-

@@ -6,6 +6,8 @@ import { PageHero } from "@/components/site/page-hero";
 import { Section } from "@/components/site/section";
 import { getDownloads, getSiteSettings } from "@/lib/content";
 
+export const dynamic = "force-dynamic";
+
 export default async function DownloadsPage() {
   const [settings, downloads] = await Promise.all([getSiteSettings(), getDownloads()]);
 

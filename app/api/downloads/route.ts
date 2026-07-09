@@ -4,6 +4,8 @@ import { requireAdmin } from "@/lib/api";
 import { connectToDatabase } from "@/lib/mongodb";
 import Download from "@/models/Download";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const downloads = await getDownloads();
   return NextResponse.json(downloads);
@@ -23,4 +25,3 @@ export async function POST(request: NextRequest) {
   const download = await Download.create(payload);
   return NextResponse.json(download, { status: 201 });
 }
-

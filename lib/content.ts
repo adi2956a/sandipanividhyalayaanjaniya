@@ -28,7 +28,7 @@ export async function getNotices(): Promise<NoticeItem[]> {
   if (!db) return sampleNotices;
 
   const notices = await Notice.find().sort({ isPinned: -1, createdAt: -1 }).lean();
-  return notices.length ? (notices as unknown as NoticeItem[]) : sampleNotices;
+  return notices as unknown as NoticeItem[];
 }
 
 export async function getGalleryItems(): Promise<GalleryItemType[]> {
@@ -36,7 +36,7 @@ export async function getGalleryItems(): Promise<GalleryItemType[]> {
   if (!db) return sampleGallery;
 
   const items = await GalleryItem.find().sort({ createdAt: -1 }).lean();
-  return items.length ? (items as unknown as GalleryItemType[]) : sampleGallery;
+  return items as unknown as GalleryItemType[];
 }
 
 export async function getDownloads(): Promise<DownloadItem[]> {
@@ -44,5 +44,5 @@ export async function getDownloads(): Promise<DownloadItem[]> {
   if (!db) return sampleDownloads;
 
   const downloads = await Download.find().sort({ uploadedAt: -1 }).lean();
-  return downloads.length ? (downloads as unknown as DownloadItem[]) : sampleDownloads;
+  return downloads as unknown as DownloadItem[];
 }
