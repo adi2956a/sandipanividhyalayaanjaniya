@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { ComplaintCategory, ComplaintItem, ComplaintRole, ComplaintStatus } from "@/lib/types";
+import { parseSafeDate } from "@/lib/utils";
 
 function formatLabel(value: string) {
   return value.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
@@ -46,8 +47,10 @@ export function ComplaintsManager() {
     const averageResolutionHours = resolved.length
       ? Math.round(
           resolved.reduce((sum, item) => {
-            const created = new Date(item.createdAt).getTime();
-            const resolvedAt = item.resolvedAt ? new Date(item.resolvedAt).getTime() : created;
+            const created = parseSafeDate(item.createdAt)?.getTime();
+            const resolvedAt = parseSafeDate(item.resolvedAt)?.getTime();
+
+            if (!created || !resolvedAt) return sum;
             return sum + (resolvedAt - created) / (1000 * 60 * 60);
           }, 0) / resolved.length
         )

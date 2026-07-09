@@ -41,8 +41,17 @@ export function normalizeTextValue<T>(value: T): T {
   return value;
 }
 
+export function parseSafeDate(value?: string | Date | null) {
+  if (!value) return null;
+
+  const date = value instanceof Date ? value : new Date(value);
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
 export function formatDate(value?: string, locale = "en-IN") {
-  if (!value) {
+  const date = parseSafeDate(value);
+
+  if (!date) {
     return locale === "hi-IN" ? "घोषित किया जाना शेष है" : "To be announced";
   }
 
@@ -50,5 +59,5 @@ export function formatDate(value?: string, locale = "en-IN") {
     day: "2-digit",
     month: "short",
     year: "numeric"
-  }).format(new Date(value));
+  }).format(date);
 }
