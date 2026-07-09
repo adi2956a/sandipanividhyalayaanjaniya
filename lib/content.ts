@@ -20,6 +20,7 @@ import type {
   SiteSettings,
   StudentResourceItem
 } from "@/lib/types";
+import { normalizeTextValue } from "@/lib/utils";
 import Complaint from "@/models/Complaint";
 import Download from "@/models/Download";
 import GalleryItem from "@/models/GalleryItem";
@@ -31,42 +32,42 @@ import StudentResource from "@/models/StudentResource";
 
 export async function getHomepageContent(): Promise<HomepageContent> {
   const db = await connectToDatabase();
-  if (!db) return sampleHomepage;
+  if (!db) return normalizeTextValue(sampleHomepage);
 
   const content = await HomepageContentModel.findOne().lean();
-  return (content as unknown as HomepageContent | null) ?? sampleHomepage;
+  return normalizeTextValue((content as unknown as HomepageContent | null) ?? sampleHomepage);
 }
 
 export async function getSiteSettings(): Promise<SiteSettings> {
   const db = await connectToDatabase();
-  if (!db) return sampleSettings;
+  if (!db) return normalizeTextValue(sampleSettings);
 
   const settings = await SiteSettingsModel.findOne().lean();
-  return (settings as unknown as SiteSettings | null) ?? sampleSettings;
+  return normalizeTextValue((settings as unknown as SiteSettings | null) ?? sampleSettings);
 }
 
 export async function getNotices(): Promise<NoticeItem[]> {
   const db = await connectToDatabase();
-  if (!db) return sampleNotices;
+  if (!db) return normalizeTextValue(sampleNotices);
 
   const notices = await Notice.find().sort({ isPinned: -1, createdAt: -1 }).lean();
-  return notices as unknown as NoticeItem[];
+  return normalizeTextValue(notices as unknown as NoticeItem[]);
 }
 
 export async function getGalleryItems(): Promise<GalleryItemType[]> {
   const db = await connectToDatabase();
-  if (!db) return sampleGallery;
+  if (!db) return normalizeTextValue(sampleGallery);
 
   const items = await GalleryItem.find().sort({ createdAt: -1 }).lean();
-  return items as unknown as GalleryItemType[];
+  return normalizeTextValue(items as unknown as GalleryItemType[]);
 }
 
 export async function getDownloads(): Promise<DownloadItem[]> {
   const db = await connectToDatabase();
-  if (!db) return sampleDownloads;
+  if (!db) return normalizeTextValue(sampleDownloads);
 
   const downloads = await Download.find().sort({ uploadedAt: -1 }).lean();
-  return downloads as unknown as DownloadItem[];
+  return normalizeTextValue(downloads as unknown as DownloadItem[]);
 }
 
 export async function getStudentResources(filters?: {
@@ -76,12 +77,12 @@ export async function getStudentResources(filters?: {
 }): Promise<StudentResourceItem[]> {
   const db = await connectToDatabase();
   if (!db) {
-    return sampleStudentResources.filter((item) => {
+    return normalizeTextValue(sampleStudentResources.filter((item) => {
       if (filters?.class && item.class !== filters.class) return false;
       if (filters?.subject && item.subject !== filters.subject) return false;
       if (filters?.stream && item.stream !== filters.stream && item.stream !== "common") return false;
       return true;
-    });
+    }));
   }
 
   const query: Record<string, unknown> = {};
@@ -91,7 +92,7 @@ export async function getStudentResources(filters?: {
   if (filters?.stream) query.stream = { $in: [filters.stream, "common"] };
 
   const resources = await StudentResource.find(query).sort({ chapterOrder: 1, createdAt: 1 }).lean();
-  return resources as unknown as StudentResourceItem[];
+  return normalizeTextValue(resources as unknown as StudentResourceItem[]);
 }
 
 export async function getPreviousYearPapers(filters?: {
@@ -101,12 +102,12 @@ export async function getPreviousYearPapers(filters?: {
 }): Promise<PreviousYearPaperItem[]> {
   const db = await connectToDatabase();
   if (!db) {
-    return samplePreviousPapers.filter((item) => {
+    return normalizeTextValue(samplePreviousPapers.filter((item) => {
       if (filters?.class && item.class !== filters.class) return false;
       if (filters?.subject && item.subject !== filters.subject) return false;
       if (filters?.year && item.year !== filters.year) return false;
       return true;
-    });
+    }));
   }
 
   const query: Record<string, unknown> = {};
@@ -116,7 +117,7 @@ export async function getPreviousYearPapers(filters?: {
   if (filters?.year) query.year = filters.year;
 
   const papers = await PreviousYearPaper.find(query).sort({ year: -1, uploadedAt: -1 }).lean();
-  return papers as unknown as PreviousYearPaperItem[];
+  return normalizeTextValue(papers as unknown as PreviousYearPaperItem[]);
 }
 
 export async function getComplaints(filters?: {
@@ -125,7 +126,7 @@ export async function getComplaints(filters?: {
   submittedBy?: string;
 }): Promise<ComplaintItem[]> {
   const db = await connectToDatabase();
-  if (!db) return sampleComplaints;
+  if (!db) return normalizeTextValue(sampleComplaints);
 
   const query: Record<string, unknown> = {};
   if (filters?.category) query.category = filters.category;
@@ -133,7 +134,7 @@ export async function getComplaints(filters?: {
   if (filters?.submittedBy) query.submittedBy = filters.submittedBy;
 
   const complaints = await Complaint.find(query).sort({ isUrgent: -1, createdAt: -1 }).lean();
-  return complaints as unknown as ComplaintItem[];
+  return normalizeTextValue(complaints as unknown as ComplaintItem[]);
 }
 
 export async function getComplaintTrackResult(trackingId: string): Promise<ComplaintTrackResult | null> {
@@ -150,10 +151,10 @@ export async function getComplaintTrackResult(trackingId: string): Promise<Compl
     | null;
   if (!complaint) return null;
 
-  return {
+  return normalizeTextValue({
     trackingId: complaint.trackingId,
     category: complaint.category,
     status: complaint.status,
     adminResponse: complaint.adminResponse ?? ""
-  };
+  });
 }

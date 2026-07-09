@@ -8,20 +8,20 @@ import { useSitePreferences } from "@/components/site/site-preferences";
 import { SiteSettings } from "@/lib/types";
 
 const navItems = [
-  { href: "/", en: "Home", hi: "à¤®à¥à¤–à¤ªà¥ƒà¤·à¥à¤ " },
-  { href: "/about", en: "About", hi: "à¤¹à¤®à¤¾à¤°à¥‡ à¤¬à¤¾à¤°à¥‡ à¤®à¥‡à¤‚" },
-  { href: "/academics", en: "Academics", hi: "à¤¶à¥ˆà¤•à¥à¤·à¤£à¤¿à¤•" },
-  { href: "/admissions", en: "Admissions", hi: "à¤ªà¥à¤°à¤µà¥‡à¤¶" },
-  { href: "/faculties", en: "Faculties", hi: "à¤¸à¤‚à¤•à¤¾à¤¯" },
-  { href: "/facilities", en: "Facilities", hi: "à¤¸à¥à¤µà¤¿à¤§à¤¾à¤à¤‚" },
-  { href: "/activities", en: "Activities", hi: "à¤—à¤¤à¤¿à¤µà¤¿à¤§à¤¿à¤¯à¤¾à¤‚" },
-  { href: "/notices", en: "Notices", hi: "à¤¸à¥‚à¤šà¤¨à¤¾à¤à¤‚" },
-  { href: "/gallery", en: "Gallery", hi: "à¤—à¥ˆà¤²à¤°à¥€" },
-  { href: "/downloads", en: "Downloads", hi: "à¤¡à¤¾à¤‰à¤¨à¤²à¥‹à¤¡" },
-  { href: "/student-resources", en: "Student Resources", hi: "Student Resources" },
-  { href: "/complaints", en: "Safe Complaint Box", hi: "Safe Complaint Box" },
-  { href: "/disclosure", en: "Disclosure", hi: "à¤ªà¥à¤°à¤•à¤Ÿà¥€à¤•à¤°à¤£" },
-  { href: "/contact", en: "Contact", hi: "à¤¸à¤‚à¤ªà¤°à¥à¤•" }
+  { href: "/", en: "Home", hi: "मुखपृष्ठ" },
+  { href: "/about", en: "About", hi: "हमारे बारे में" },
+  { href: "/academics", en: "Academics", hi: "शैक्षणिक" },
+  { href: "/admissions", en: "Admissions", hi: "प्रवेश" },
+  { href: "/faculties", en: "Faculties", hi: "संकाय" },
+  { href: "/facilities", en: "Facilities", hi: "सुविधाएं" },
+  { href: "/activities", en: "Activities", hi: "गतिविधियां" },
+  { href: "/notices", en: "Notices", hi: "सूचनाएं" },
+  { href: "/gallery", en: "Gallery", hi: "गैलरी" },
+  { href: "/downloads", en: "Downloads", hi: "डाउनलोड" },
+  { href: "/student-resources", en: "Student Resources", hi: "छात्र संसाधन" },
+  { href: "/complaints", en: "Safe Complaint Box", hi: "शिकायत बॉक्स" },
+  { href: "/disclosure", en: "Disclosure", hi: "प्रकटीकरण" },
+  { href: "/contact", en: "Contact", hi: "संपर्क" }
 ];
 
 export function SiteHeader({ settings }: { settings: SiteSettings }) {
@@ -32,10 +32,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
       <div className="bg-primary text-white">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-2 text-sm md:px-6 lg:flex-row lg:items-center lg:justify-between">
           <p>
-            <LocalizedText
-              en="School Education Department, Government of Madhya Pradesh"
-              hi="à¤¸à¥à¤•à¥‚à¤² à¤¶à¤¿à¤•à¥à¤·à¤¾ à¤µà¤¿à¤­à¤¾à¤—, à¤®à¤§à¥à¤¯ à¤ªà¥à¤°à¤¦à¥‡à¤¶ à¤¶à¤¾à¤¸à¤¨"
-            />
+            <LocalizedText en="School Education Department, Government of Madhya Pradesh" hi="स्कूल शिक्षा विभाग, मध्य प्रदेश शासन" />
           </p>
           <SitePreferenceControls />
         </div>
@@ -59,7 +56,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
               {settings.phone}
             </a>
             <a className="rounded-full bg-accent px-4 py-2 font-medium text-white" href="/admissions">
-              <LocalizedText en="Apply / Enquire" hi="à¤†à¤µà¥‡à¤¦à¤¨ / à¤œà¤¾à¤¨à¤•à¤¾à¤°à¥€" />
+              <LocalizedText en="Apply / Enquire" hi="आवेदन / जानकारी" />
             </a>
           </div>
         </div>

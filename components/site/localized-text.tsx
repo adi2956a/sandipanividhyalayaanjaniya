@@ -2,6 +2,11 @@
 
 import { ReactNode } from "react";
 import { useSitePreferences } from "@/components/site/site-preferences";
+import { repairMojibakeText } from "@/lib/utils";
+
+function normalizeNode(node: ReactNode) {
+  return typeof node === "string" ? repairMojibakeText(node) : node;
+}
 
 export function LocalizedText({
   en,
@@ -17,7 +22,8 @@ export function LocalizedText({
   className?: string;
 }) {
   const { language } = useSitePreferences();
-  const preferredText = language === "hi" ? hi : en;
+  const preferredText = language === "hi" ? normalizeNode(hi) : normalizeNode(en);
+  const fallbackText = fallback === "hi" ? normalizeNode(hi) : normalizeNode(en);
 
-  return <Component className={className}>{preferredText ?? (fallback === "hi" ? hi : en)}</Component>;
+  return <Component className={className}>{preferredText ?? fallbackText}</Component>;
 }
