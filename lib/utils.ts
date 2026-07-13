@@ -30,6 +30,10 @@ export function normalizeTextValue<T>(value: T): T {
     return repairMojibakeText(value) as T;
   }
 
+  if (value instanceof Date) {
+    return value;
+  }
+
   if (Array.isArray(value)) {
     return value.map((item) => normalizeTextValue(item)) as T;
   }
