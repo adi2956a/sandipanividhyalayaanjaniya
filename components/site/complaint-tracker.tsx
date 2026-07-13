@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ComplaintTrackResult } from "@/lib/types";
+import { formatDateTime } from "@/lib/utils";
 
 function formatLabel(value: string) {
   return value.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
@@ -70,6 +71,12 @@ export function ComplaintTracker() {
               <p className="text-sm text-muted">Status</p>
               <p className="mt-2 font-heading text-2xl font-semibold text-ink">{formatLabel(result.status)}</p>
             </div>
+          </div>
+          <div className="mt-5 rounded-3xl border border-border bg-surface p-5">
+            <p className="text-sm font-medium text-muted">Complaint Timeline</p>
+            <p className="mt-2 text-sm text-muted">Submitted: {formatDateTime(result.createdAt)}</p>
+            <p className="mt-2 text-sm text-muted">Last updated: {formatDateTime(result.updatedAt ?? result.createdAt)}</p>
+            {result.resolvedAt ? <p className="mt-2 text-sm text-muted">Resolved: {formatDateTime(result.resolvedAt)}</p> : null}
           </div>
           <div className="mt-5 rounded-3xl border border-border bg-surface p-5">
             <p className="text-sm font-medium text-muted">Submitted Problem</p>

@@ -61,3 +61,19 @@ export function formatDate(value?: string, locale = "en-IN") {
     year: "numeric"
   }).format(date);
 }
+
+export function formatDateTime(value?: string, locale = "en-IN") {
+  const date = parseSafeDate(value);
+
+  if (!date) {
+    return locale === "hi-IN" ? "उपलब्ध नहीं" : "Not available";
+  }
+
+  return new Intl.DateTimeFormat(locale, {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit"
+  }).format(date);
+}

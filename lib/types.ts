@@ -89,6 +89,7 @@ export interface ComplaintItem {
   adminResponse?: string;
   isUrgent: boolean;
   createdAt: string;
+  updatedAt?: string;
   resolvedAt?: string;
 }
 
@@ -100,6 +101,9 @@ export interface ComplaintTrackResult {
   message: string;
   status: ComplaintStatus;
   adminResponse?: string;
+  createdAt: string;
+  updatedAt?: string;
+  resolvedAt?: string;
 }
 
 export interface HomepageContent {

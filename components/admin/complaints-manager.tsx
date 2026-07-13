@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { ComplaintCategory, ComplaintItem, ComplaintRole, ComplaintStatus } from "@/lib/types";
-import { parseSafeDate } from "@/lib/utils";
+import { formatDateTime, parseSafeDate } from "@/lib/utils";
 
 function formatLabel(value: string) {
   return value.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
@@ -162,6 +162,7 @@ export function ComplaintsManager() {
               <p className="mt-2 text-sm text-muted">
                 {formatLabel(item.category)} | {formatLabel(item.submittedBy)} | {item.classSection || "No class/section"}
               </p>
+              <p className="mt-2 text-sm text-muted">Submitted: {formatDateTime(item.createdAt)}</p>
               <p className="mt-2 text-sm text-muted">{formatLabel(item.status)}</p>
             </button>
           ))}
@@ -178,6 +179,9 @@ export function ComplaintsManager() {
               <p className="mt-2 text-sm text-muted">
                 {formatLabel(selected.submittedBy)} | {selected.classSection || "No class/section provided"}
               </p>
+              <p className="mt-1 text-sm text-muted">Submitted: {formatDateTime(selected.createdAt)}</p>
+              <p className="mt-1 text-sm text-muted">Last updated: {formatDateTime(selected.updatedAt ?? selected.createdAt)}</p>
+              {selected.resolvedAt ? <p className="mt-1 text-sm text-muted">Resolved: {formatDateTime(selected.resolvedAt)}</p> : null}
               {selected.optionalContact ? <p className="mt-1 text-sm text-muted">Optional contact: {selected.optionalContact}</p> : null}
             </div>
 

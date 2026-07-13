@@ -150,6 +150,9 @@ export async function getComplaintTrackResult(trackingId: string): Promise<Compl
         message: string;
         status: ComplaintTrackResult["status"];
         adminResponse?: string;
+        createdAt: string;
+        updatedAt?: string;
+        resolvedAt?: string;
       }
     | null;
   if (!complaint) return null;
@@ -161,6 +164,9 @@ export async function getComplaintTrackResult(trackingId: string): Promise<Compl
     classSection: complaint.classSection ?? "",
     message: complaint.message,
     status: complaint.status,
-    adminResponse: complaint.adminResponse ?? ""
+    adminResponse: complaint.adminResponse ?? "",
+    createdAt: complaint.createdAt,
+    updatedAt: complaint.updatedAt,
+    resolvedAt: complaint.resolvedAt
   });
 }
