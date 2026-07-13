@@ -14,10 +14,10 @@ export default async function ComplaintsPage() {
       <section className="bg-surface">
         <div className="mx-auto max-w-5xl px-4 py-14 md:px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-secondary">Private Support Desk</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-secondary">Complaint Box</p>
             <h1 className="mt-4 font-heading text-4xl font-semibold text-ink">This is a safe space to speak up</h1>
             <p className="mt-4 text-lg leading-8 text-muted">
-              No names, no login. Your identity is not recorded here unless you choose to leave optional contact details for a direct reply.
+              Your identity stays private here. No names and no login are required unless you choose to share optional contact details for a direct reply.
             </p>
           </div>
 

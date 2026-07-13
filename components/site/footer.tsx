@@ -38,7 +38,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
               <LocalizedText en="Student Resources" hi="छात्र संसाधन" />
             </Link>
             <Link href="/complaints">
-              <LocalizedText en="Anonymous Complaint Box" hi="गुमनाम शिकायत बॉक्स" />
+              <LocalizedText en="Complaint Box" hi="शिकायत बॉक्स" />
             </Link>
             <Link href="/disclosure">
               <LocalizedText en="Mandatory Disclosure" hi="अनिवार्य प्रकटीकरण" />

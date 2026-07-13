@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FloatingComplaintButton } from "@/components/site/floating-complaint-button";
 import { LocalizedText } from "@/components/site/localized-text";
 import { SiteLogo } from "@/components/site/site-logo";
 import { SitePreferenceControls } from "@/components/site/site-preference-controls";
@@ -21,7 +22,6 @@ const navItems = [
   { href: "/gallery", en: "Gallery", hi: "गैलरी" },
   { href: "/downloads", en: "Downloads", hi: "डाउनलोड" },
   { href: "/student-resources", en: "Student Resources", hi: "छात्र संसाधन" },
-  { href: "/complaints", en: "Safe Complaint Box", hi: "शिकायत बॉक्स" },
   { href: "/disclosure", en: "Disclosure", hi: "प्रकटीकरण" },
   { href: "/contact", en: "Contact", hi: "संपर्क" }
 ];
@@ -88,6 +88,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
           </div>
         </nav>
       </header>
+      <FloatingComplaintButton />
     </>
   );
 }
