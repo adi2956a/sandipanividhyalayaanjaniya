@@ -15,10 +15,22 @@ const languageOptions = [
 ] as const;
 
 export function SitePreferenceControls() {
-  const { language, fontScale, setLanguage, setFontScale } = useSitePreferences();
+  const { language, fontScale, theme, setLanguage, setFontScale, setTheme } = useSitePreferences();
+  const isDark = theme === "dark";
 
   return (
     <div className="flex flex-wrap items-center justify-end gap-2">
+      <button
+        aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+        className="flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-2 text-xs font-semibold text-white transition hover:bg-white/20"
+        onClick={() => setTheme(isDark ? "light" : "dark")}
+        type="button"
+      >
+        <span aria-hidden="true" className="text-sm leading-none">
+          {isDark ? "☀" : "☾"}
+        </span>
+        <span>{isDark ? "Light" : "Dark"}</span>
+      </button>
       <div className="flex items-center gap-1 rounded-full border border-white/25 bg-white/10 p-1">
         {languageOptions.map((option) => (
           <button

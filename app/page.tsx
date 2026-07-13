@@ -25,7 +25,7 @@ export default async function HomePage() {
     <div>
       <SiteHeader settings={settings} />
 
-      <section className="bg-gradient-to-b from-surface to-white">
+      <section className="bg-[linear-gradient(180deg,rgb(var(--color-surface)),rgb(var(--color-card)))]">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">

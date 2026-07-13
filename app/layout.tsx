@@ -27,7 +27,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(() => {
+              try {
+                const savedTheme = window.localStorage.getItem("site-theme");
+                const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+                document.documentElement.dataset.theme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : systemTheme;
+              } catch (error) {
+                document.documentElement.dataset.theme = "light";
+              }
+            })();`
+          }}
+        />
+      </head>
       <body className={`${poppins.variable} ${inter.variable} ${notoSansDevanagari.variable}`}>
         <SitePreferencesProvider>{children}</SitePreferencesProvider>
       </body>

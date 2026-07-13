@@ -36,49 +36,49 @@ export function ComplaintTracker() {
 
   return (
     <div className="grid gap-6">
-      <form className="rounded-[2rem] border border-[#d9dbe8] bg-white p-8 shadow-card" onSubmit={handleTrack}>
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#63708b]">Track Your Complaint</p>
-        <h2 className="mt-3 font-heading text-3xl font-semibold text-[#1f2940]">Enter your tracking ID</h2>
+      <form className="rounded-[2rem] border border-border bg-white p-8 shadow-card" onSubmit={handleTrack}>
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-secondary">Track Your Complaint</p>
+        <h2 className="mt-3 font-heading text-3xl font-semibold text-ink">Enter your tracking ID</h2>
         <div className="mt-6 flex flex-col gap-4 md:flex-row">
           <input
             required
-            className="flex-1 rounded-2xl border border-[#d9dbe8] px-4 py-3 text-lg uppercase tracking-[0.1em]"
+            className="flex-1 rounded-2xl border border-border px-4 py-3 text-lg uppercase tracking-[0.1em]"
             placeholder="CMP-XXXXXX"
             value={trackingId}
             onChange={(event) => setTrackingId(event.target.value)}
           />
-          <button className="rounded-full bg-[#1f2940] px-6 py-3 font-semibold text-white" disabled={loading} type="submit">
+          <button className="rounded-full bg-primary px-6 py-3 font-semibold text-white" disabled={loading} type="submit">
             {loading ? "Checking..." : "Check Status"}
           </button>
         </div>
-        {status ? <p className="mt-4 text-sm text-[#8a3b3b]">{status}</p> : null}
+        {status ? <p className="mt-4 text-sm text-red-500">{status}</p> : null}
       </form>
 
       {result ? (
-        <div className="rounded-[2rem] border border-[#d9dbe8] bg-white p-8 shadow-card">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#63708b]">{result.trackingId}</p>
+        <div className="rounded-[2rem] border border-border bg-white p-8 shadow-card">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-secondary">{result.trackingId}</p>
           <div className="mt-4 grid gap-4 md:grid-cols-3">
-            <div className="rounded-3xl bg-[#f7f7fb] p-5">
-              <p className="text-sm text-[#5e687d]">Category</p>
-              <p className="mt-2 font-heading text-2xl font-semibold text-[#1f2940]">{formatLabel(result.category)}</p>
+            <div className="rounded-3xl bg-surface p-5">
+              <p className="text-sm text-muted">Category</p>
+              <p className="mt-2 font-heading text-2xl font-semibold text-ink">{formatLabel(result.category)}</p>
             </div>
-            <div className="rounded-3xl bg-[#f7f7fb] p-5">
-              <p className="text-sm text-[#5e687d]">Submitted By</p>
-              <p className="mt-2 font-heading text-2xl font-semibold text-[#1f2940]">{formatLabel(result.submittedBy)}</p>
+            <div className="rounded-3xl bg-surface p-5">
+              <p className="text-sm text-muted">Submitted By</p>
+              <p className="mt-2 font-heading text-2xl font-semibold text-ink">{formatLabel(result.submittedBy)}</p>
             </div>
-            <div className="rounded-3xl bg-[#f7f7fb] p-5">
-              <p className="text-sm text-[#5e687d]">Status</p>
-              <p className="mt-2 font-heading text-2xl font-semibold text-[#1f2940]">{formatLabel(result.status)}</p>
+            <div className="rounded-3xl bg-surface p-5">
+              <p className="text-sm text-muted">Status</p>
+              <p className="mt-2 font-heading text-2xl font-semibold text-ink">{formatLabel(result.status)}</p>
             </div>
           </div>
-          <div className="mt-5 rounded-3xl border border-[#e7e9f2] bg-[#fafafe] p-5">
-            <p className="text-sm font-medium text-[#5e687d]">Submitted Problem</p>
-            {result.classSection?.trim() ? <p className="mt-2 text-sm text-[#5e687d]">Class / Section: {result.classSection}</p> : null}
-            <p className="mt-2 leading-7 text-[#1f2940]">{result.message}</p>
+          <div className="mt-5 rounded-3xl border border-border bg-surface p-5">
+            <p className="text-sm font-medium text-muted">Submitted Problem</p>
+            {result.classSection?.trim() ? <p className="mt-2 text-sm text-muted">Class / Section: {result.classSection}</p> : null}
+            <p className="mt-2 leading-7 text-ink">{result.message}</p>
           </div>
-          <div className="mt-5 rounded-3xl border border-[#e7e9f2] bg-[#fafafe] p-5">
-            <p className="text-sm font-medium text-[#5e687d]">School Response</p>
-            <p className="mt-2 leading-7 text-[#1f2940]">
+          <div className="mt-5 rounded-3xl border border-border bg-surface p-5">
+            <p className="text-sm font-medium text-muted">School Response</p>
+            <p className="mt-2 leading-7 text-ink">
               {result.adminResponse?.trim() || "No response has been posted yet. Please check again later."}
             </p>
           </div>

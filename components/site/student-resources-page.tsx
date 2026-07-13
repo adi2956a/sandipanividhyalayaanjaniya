@@ -88,7 +88,7 @@ export function StudentResourcesPage() {
 
   return (
     <div className="grid gap-8">
-      <section className="rounded-[2rem] border border-border bg-gradient-to-br from-white via-surface to-white p-6 shadow-card">
+      <section className="rounded-[2rem] border border-border bg-[linear-gradient(135deg,rgb(var(--color-card)),rgb(var(--color-surface)),rgb(var(--color-card)))] p-6 shadow-card">
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-secondary">Class Selection</p>
         <div className="mt-5 flex flex-wrap gap-3">
           {classOptions.map((classValue) => (

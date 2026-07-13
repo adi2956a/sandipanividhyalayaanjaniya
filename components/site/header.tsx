@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LocalizedText } from "@/components/site/localized-text";
 import { SiteLogo } from "@/components/site/site-logo";
 import { SitePreferenceControls } from "@/components/site/site-preference-controls";
 import { useSitePreferences } from "@/components/site/site-preferences";
 import { SiteSettings } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", en: "Home", hi: "मुखपृष्ठ" },
@@ -26,6 +28,7 @@ const navItems = [
 
 export function SiteHeader({ settings }: { settings: SiteSettings }) {
   const { language } = useSitePreferences();
+  const pathname = usePathname();
 
   return (
     <>
@@ -68,7 +71,17 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
         <nav className="sticky top-0 z-20 border-t border-border bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-7xl gap-5 overflow-x-auto px-4 py-3 text-sm font-medium md:px-6">
             {navItems.map((item) => (
-              <Link key={item.href} className="whitespace-nowrap text-ink transition hover:text-primary" href={item.href}>
+              <Link
+                key={item.href}
+                aria-current={pathname === item.href ? "page" : undefined}
+                className={cn(
+                  "whitespace-nowrap rounded-full px-3 py-2 transition",
+                  pathname === item.href
+                    ? "bg-primary text-white shadow-card"
+                    : "text-ink hover:bg-surface hover:text-primary"
+                )}
+                href={item.href}
+              >
                 <LocalizedText en={item.en} hi={item.hi} />
               </Link>
             ))}
