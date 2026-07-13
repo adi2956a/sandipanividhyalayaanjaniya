@@ -20,7 +20,7 @@ import type {
   SiteSettings,
   StudentResourceItem
 } from "@/lib/types";
-import { normalizeTextValue } from "@/lib/utils";
+import { normalizeTextValue, parseSafeDate } from "@/lib/utils";
 import Complaint from "@/models/Complaint";
 import Download from "@/models/Download";
 import GalleryItem from "@/models/GalleryItem";
@@ -29,6 +29,35 @@ import Notice from "@/models/Notice";
 import PreviousYearPaper from "@/models/PreviousYearPaper";
 import SiteSettingsModel from "@/models/SiteSettings";
 import StudentResource from "@/models/StudentResource";
+
+function getComplaintSortTime(item: Pick<ComplaintItem, "createdAt" | "updatedAt" | "resolvedAt">) {
+  return (
+    parseSafeDate(item.createdAt)?.getTime() ??
+    parseSafeDate(item.updatedAt)?.getTime() ??
+    parseSafeDate(item.resolvedAt)?.getTime() ??
+    0
+  );
+}
+
+function sortComplaints(items: ComplaintItem[]) {
+  return [...items].sort((left, right) => {
+    const leftResolved = left.status === "resolved";
+    const rightResolved = right.status === "resolved";
+
+    if (leftResolved !== rightResolved) {
+      return leftResolved ? 1 : -1;
+    }
+
+    const leftUrgent = left.isUrgent ? 1 : 0;
+    const rightUrgent = right.isUrgent ? 1 : 0;
+
+    if (leftUrgent !== rightUrgent) {
+      return rightUrgent - leftUrgent;
+    }
+
+    return getComplaintSortTime(right) - getComplaintSortTime(left);
+  });
+}
 
 export async function getHomepageContent(): Promise<HomepageContent> {
   const db = await connectToDatabase();
@@ -126,15 +155,15 @@ export async function getComplaints(filters?: {
   submittedBy?: string;
 }): Promise<ComplaintItem[]> {
   const db = await connectToDatabase();
-  if (!db) return normalizeTextValue(sampleComplaints);
+  if (!db) return sortComplaints(normalizeTextValue(sampleComplaints));
 
   const query: Record<string, unknown> = {};
   if (filters?.category) query.category = filters.category;
   if (filters?.status) query.status = filters.status;
   if (filters?.submittedBy) query.submittedBy = filters.submittedBy;
 
-  const complaints = await Complaint.find(query).sort({ isUrgent: -1, createdAt: -1 }).lean();
-  return normalizeTextValue(complaints as unknown as ComplaintItem[]);
+  const complaints = await Complaint.find(query).lean();
+  return sortComplaints(normalizeTextValue(complaints as unknown as ComplaintItem[]));
 }
 
 export async function getComplaintTrackResult(trackingId: string): Promise<ComplaintTrackResult | null> {
